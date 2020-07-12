@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
   CardTitle } from 'reactstrap';
 
+
+
 class Menu extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
-        };
-    }
 
+      }
+      componentDidMount(){
+        console.log('Menu Component mount Invoked');
+      }
     render() {
-        const menu = this.props.dishes.map((dish) => {
+      const menu = this.props.dishes.map((dish) => {
             return (
               <div key={dish.id} className="col-12 col-md-5 m-1">
-                <Card  tag="li">
+                <Card key={dish.id} onClick={()=> this.props.onClick(dish.id)} tag="li">
                       <CardImg width="100%" src={dish.image} alt={dish.name} />
                       <CardImgOverlay>
                       <CardTitle>{dish.name}</CardTitle>
@@ -27,13 +29,11 @@ class Menu extends Component {
         return (
           <div className="container">
             <div className="row">
-            
-                  {menu}
-              
+                {menu}
             </div>
-          </div>
+            </div>
         );
     }
-}
+  }
 
 export default Menu;
