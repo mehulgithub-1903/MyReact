@@ -1,20 +1,27 @@
 import React ,{Component} from 'react';
-import { Navbar, NavbarBrand,Nav,NavItem,NavbarToggler,Collapse, Jumbotron } from 'reactstrap';
+import { Navbar, NavbarBrand,Nav,NavItem,NavbarToggler,Collapse, Jumbotron,Button,Modal,ModalBody,ModalHeader } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 class Header extends Component{
   
     constructor(props){
         super(props);
         this.state={
-             isNavOpen:false
+             isNavOpen:false,
+             isModalOpen: false
             };
         this.toggleNav=this.toggleNav.bind(this);
+        this.toggleModal=this.toggleModal.bind(this);
+    
     }
   toggleNav(){
     this.setState({
         isNavOpen:!this.state.isNavOpen
     })
-
+  }
+  toggleModal(){
+    this.setState({
+        isModalOpen:!this.state.isModalOpen
+    })
   }
     render(){
         return (
@@ -44,7 +51,7 @@ class Header extends Component{
                 <NavItem>
                     <NavLink className="nav-link" to="/menu">
                         <span className="fa fa-list fa-lg"></span>
-                         Menu
+                          Menu
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -66,7 +73,15 @@ class Header extends Component{
                     </div>
                 </div>
             </div>
-        </Jumbotron>
+        </Jumbotron>    
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+            <ModalHeader>
+                Login
+            </ModalHeader>
+            <ModalBody>
+
+            </ModalBody>
+        </Modal>
             </React.Fragment>
         );
 }
